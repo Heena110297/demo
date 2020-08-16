@@ -1,0 +1,4 @@
+com\nagarro\nagp\demo\service\DemoService.class
+com\nagarro\nagp\demo\service\impl\DemoServiceImpl.class
+com\nagarro\nagp\demo\controllers\DemoController.class
+com\nagarro\nagp\demo\DemoApplication.class
