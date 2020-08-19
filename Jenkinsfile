@@ -4,10 +4,11 @@ pipeline{
 		maven 'Maven3'
 	}
 	options {
-		timestamp()
+		timestamps()
 		timeout(time: 1, unit: 'HOURS')
 		skipDefaultCheckout()
 		buildDiscarder(logRotator(daysToKeepStr: '10', numToKeepStr: '10'))
+		disableConcurrentBuilds()
 	}
 	stages {
 		stage('çheckout') {
