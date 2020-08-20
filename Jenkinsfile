@@ -29,6 +29,7 @@ pipeline{
 		   bat "mvn test"
 		  }
 		}
+		
 	  stage('Sonar analysis'){
 		steps{
 		   withSonarQubeEnv("localSonar")
@@ -54,4 +55,9 @@ pipeline{
 		 }
 	  }
 	}
+	post {
+        always {
+            junit 'build/reports/**/*.xml'
+        }
+    }
 }
