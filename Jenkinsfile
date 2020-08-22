@@ -76,7 +76,7 @@ pipeline{
 		       docker stop $ContainerId
 			   docker rm -f $ContainerId
 		   fi
-		   ...
+		   '''
 		}
 	  }
 	  stage('Docker Deployment'){
