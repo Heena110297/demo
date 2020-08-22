@@ -59,7 +59,7 @@ pipeline{
 	  }
 	  stage('Docker Image'){
 	    steps{
-		    bat 'docker build -t heenamittal11/demo-application:%BUILD_NUMBER% --network=host --no-cache -f Dockerfile .'
+		    bat 'docker build --network=host --no-cache -t heenamittal11/demo-application:%BUILD_NUMBER% -f Dockerfile .'
 		}
 	  }
 	  stage('Push to DTR'){
