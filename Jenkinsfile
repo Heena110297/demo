@@ -11,7 +11,7 @@ pipeline{
 		disableConcurrentBuilds()
 	}
 	stages {
-		stage('çheckout') {
+		stage('Checkout') {
 		  steps{
 			echo "build in master branch -1"
 			checkout scm
@@ -40,7 +40,7 @@ pipeline{
 	  }
 	  stage('Upload to artifactory'){
 	  
-		 steps{
+		steps{
 			rtMavenDeployer(
 			  id: 'deployer',
 			  serverId: 'demoArtifactory',
@@ -52,9 +52,40 @@ pipeline{
 	          goals: 'clean install',
 	          deployerId: 'deployer',
             )
-		 }
+			rtPublishBuildInfo(
+			   serverId:'demoArtifactory'
+			)
+		}
+	  }
+	  stage('Docker Image'){
+	    steps{
+		    bat '/bin/docker build -t heenamittal11/demo-application:${BUILD_NUMBER} --no-cache -f Dockerfile .'
+		}
+	  }
+	  stage('Push to DTR'){
+	    steps{
+		    bat '/bin/docker push heenamittal11/demo-application:${BUILD_NUMBER}'
+		}
+	  }
+	  stage('Stop Running Container'){
+	    steps{
+		   bat ...
+		   ContainerId=$(docker ps | grep 7000 | cut -d " " -f 1)
+		   if [$ContainerId]
+		   then
+		       docker stop $ContainerId
+			   docker rm -f $ContainerId
+		   fi
+		   ...
+		}
+	  }
+	  stage('Docker Deployment'){
+	    steps{
+		  bat 'docker run --name demo-application -d -p 7000:8080 heenamittal11/demo-application:{BUILD_NUMBER}'
+		}
 	  }
 	}
+	 
 	post {
         always {
             junit 'target/surefire-reports/*.xml'

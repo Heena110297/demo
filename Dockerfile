@@ -1,9 +1,9 @@
-FROM openjdk:8-jdk-alpine
+FROM tomcat:alpine
 
-LABEL maintainer="heena.mittal@nagarro.com"
+LABEL maintainer="Heena Mittal"
 
-ADD target/demo-0.0.1-SNAPSHOT.jar demo-0.0.1-SNAPSHOT.jar
+RUN wget -O /usr/local/tomcat/webapps/launchstation04.war http://localhost:8081/artifactory/demo-application/com/example/demo-application-exec/0.0.1-SNAPSHOT/demo-application-exec-0.0.1.war
 
 EXPOSE 9100
 
-ENTRYPOINT ["java", "-jar","demo-0.0.1-SNAPSHOT.jar"]
+CMD /usr/local/tomcat/bin/cataline.sh run
