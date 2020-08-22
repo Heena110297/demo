@@ -59,12 +59,12 @@ pipeline{
 	  }
 	  stage('Docker Image'){
 	    steps{
-		    bat '/bin/docker build -t heenamittal11/demo-application:${BUILD_NUMBER} --no-cache -f Dockerfile .'
+		    bat 'docker build -t heenamittal11/demo-application:${BUILD_NUMBER} --no-cache -f Dockerfile .'
 		}
 	  }
 	  stage('Push to DTR'){
 	    steps{
-		    bat '/bin/docker push heenamittal11/demo-application:${BUILD_NUMBER}'
+		    bat 'docker push heenamittal11/demo-application:${BUILD_NUMBER}'
 		}
 	  }
 	  stage('Stop Running Container'){
