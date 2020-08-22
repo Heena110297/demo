@@ -11,11 +11,6 @@ pipeline{
 		disableConcurrentBuilds()
 	}
 	stages {
-		stage("Env Variables") {
-            steps {
-                bat "printenv"
-            }
-        }
 		stage('Checkout') {
 		  steps{
 			echo "build in master branch -1"
@@ -64,12 +59,12 @@ pipeline{
 	  }
 	  stage('Docker Image'){
 	    steps{
-		    bat 'docker build -t heenamittal11/demo-application:${env.BUILD_NUMBER} --no-cache -f Dockerfile .'
+		    bat 'docker build -t heenamittal11/demo-application:%BUILD_NUMBER% --no-cache -f Dockerfile .'
 		}
 	  }
 	  stage('Push to DTR'){
 	    steps{
-		    bat 'docker push heenamittal11/demo-application:${env.BUILD_NUMBER}'
+		    bat 'docker push heenamittal11/demo-application:%BUILD_NUMBER%'
 		}
 	  }
 	  stage('Stop Running Container'){
@@ -86,7 +81,7 @@ pipeline{
 	  }
 	  stage('Docker Deployment'){
 	    steps{
-		  bat 'docker run --name demo-application -d -p 7000:9100 heenamittal11/demo-application:{env.BUILD_NUMBER}'
+		  bat 'docker run --name demo-application -d -p 7000:9100 heenamittal11/demo-application:%BUILD_NUMBER%'
 		}
 	  }
 	}
