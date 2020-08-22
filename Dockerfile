@@ -2,7 +2,7 @@ FROM tomcat:alpine
 
 LABEL maintainer="Heena Mittal"
 
-RUN wget -O /usr/local/tomcat/webapps/launchstation04.war http://localhost:8082/artifactory/demoArtifactory/com/example/demo-application-exec/0.0.1-SNAPSHOT/demo-application-exec-0.0.1.war
+RUN wget -O /usr/local/tomcat/webapps/launchstation04.war  http://localhost:8082/artifactory/demoArtifactory/com/nagarro/nagp/demo/0.0.1-SNAPSHOT/demo-0.0.1-SNAPSHOT.war
 
 EXPOSE 9100
 
