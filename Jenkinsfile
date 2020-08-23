@@ -71,11 +71,11 @@ pipeline{
 	  stage('Stop Running Container'){
 	    steps{
 		   bat ''''
-		   ContainerId=docker ps -aqf "name=^demo-application"
-		   if [$ContainerId]
+		   set ContainerId=docker ps -aqf "name=^demo-application"
+		   if [%ContainerId%]
 		   then
-		       docker stop $ContainerId
-			   docker rm -f $ContainerId
+		       docker stop %ContainerId%
+			   docker rm -f %ContainerId%
 		   fi
 		   '''
 		}
