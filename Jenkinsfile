@@ -64,6 +64,7 @@ pipeline{
 	  }
 	  stage('Push to DTR'){
 	    steps{
+		    bat 'docker login -u heenamittal11 -p Docker@11' 
 		    bat 'docker push heenamittal11/demo-application:%BUILD_NUMBER%'
 		}
 	  }
