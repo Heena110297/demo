@@ -74,10 +74,11 @@ pipeline{
 		   for /f %%i in ('docker ps -aqf "name=^demo-application"') do set containerId=%%i
            echo %containerId%
            If "%containerId%" == "" (
-            echo "No Container running") 
-		   ELSE (
+            echo "No Container running"
+		   )else (
             docker stop %ContainerId%
-            docker rm -f %ContainerId%)
+            docker rm -f %ContainerId%
+		   )
 		   '''
 		}
 	  }
