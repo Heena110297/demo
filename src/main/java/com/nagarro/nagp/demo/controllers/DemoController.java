@@ -12,7 +12,7 @@ public class DemoController {
 	@Autowired 
 	DemoService demoService;
 	
-	@RequestMapping("/")
+	@RequestMapping("/hello")
 	public String hello() {
 		return demoService.sayHello();
 	}
