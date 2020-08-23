@@ -68,18 +68,6 @@ pipeline{
 		    bat 'docker push heenamittal11/demo-application:%BUILD_NUMBER%'
 		}
 	  }
-	  stage('Stop Running Container'){
-	    steps{
-		   bat ''''
-		   set ContainerId=docker ps -aqf "name=^demo-application"
-		   if [%ContainerId%]
-		   then
-		       docker stop %ContainerId%
-			   docker rm -f %ContainerId%
-		   fi
-		   '''
-		}
-	  }
 	  stage('Docker Deployment'){
 	    steps{
 		  bat 'docker run -it --name demo-application -d -p 7000:9100 heenamittal11/demo-application:%BUILD_NUMBER%'
