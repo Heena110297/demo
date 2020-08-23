@@ -70,7 +70,7 @@ pipeline{
 	  }
 	  stage('Stop Running Container'){
 	    steps{
-		   bat '''
+		   sh '''
 		   ContainerId=$(docker ps | grep 7000 | cut -d " " -f 1)
 		   if [$ContainerId]
 		   then
