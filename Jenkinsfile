@@ -70,8 +70,8 @@ pipeline{
 	  }
 	  stage('Stop Running Container'){
 	    steps{
-		   sh '''
-		   ContainerId=$(docker ps | grep 7000 | cut -d " " -f 1)
+		   bat ''''
+		   ContainerId=docker ps -aqf "name=^demo-application"
 		   if [$ContainerId]
 		   then
 		       docker stop $ContainerId
@@ -82,7 +82,7 @@ pipeline{
 	  }
 	  stage('Docker Deployment'){
 	    steps{
-		  bat 'docker run --name demo-application -d -p 7000:9100 heenamittal11/demo-application:%BUILD_NUMBER%'
+		  bat 'docker run -it --name demo-application -d -p 7000:9100 heenamittal11/demo-application:%BUILD_NUMBER%'
 		}
 	  }
 	}
