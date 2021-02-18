@@ -32,7 +32,7 @@ pipeline{
 		
 	  stage('Sonar analysis'){
 		steps{
-		   withSonarQubeEnv("localSonar")
+		   withSonarQubeEnv("localSonarScanner")
 		   {
 			 bat "mvn sonar:sonar"
 		   }
