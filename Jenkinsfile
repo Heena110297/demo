@@ -84,7 +84,7 @@ pipeline{
 	  }
 	  stage('Docker Deployment'){
 	    steps{
-		  bat 'docker run -it --name demo-application -d -p 8080:8080 heenamittal11/demo-application:%BUILD_NUMBER%'
+		  bat 'docker run -it --name demo-application -d -p 6200:8080 heenamittal11/demo-application:%BUILD_NUMBER%'
 		}
 	  }
 	}
