@@ -1,7 +1,7 @@
 pipeline{
 	agent any
 	environment{
-	 GIT_BRANCH='${Environment}'
+	 GIT_BRANCH='${params.Environment}'
 	}
 	tools {
 		maven 'Maven3'
@@ -16,13 +16,13 @@ pipeline{
 	stages {
 		stage('Checkout') {
 		  steps{
-			echo "build in ${Environment} branch -1"
+			echo "build in ${params.Environment} branch -1"
 			checkout scm
 		  }
 		}
 		stage('build') {
 		  steps{
-			echo "build in ${Environment} branch -2"
+			echo "build in ${params.Environment} branch -2"
 			bat "mvn install"
 		  }
 		}
