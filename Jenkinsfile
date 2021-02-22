@@ -1,7 +1,7 @@
 pipeline{
 	agent any
 	environment{
-	 BRANCH_NAME='prod'
+	 GIT_BRANCH='prod'
 	}
 	tools {
 		maven 'Maven3'
