@@ -16,13 +16,13 @@ pipeline{
 	stages {
 		stage('Checkout') {
 		  steps{
-			echo "build in prod branch -1"
+			echo "build in ${Environment} branch -1"
 			checkout scm
 		  }
 		}
 		stage('build') {
 		  steps{
-			echo "build in prod branch -2"
+			echo "build in ${Environment} branch -2"
 			bat "mvn install"
 		  }
 		}
