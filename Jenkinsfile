@@ -1,5 +1,8 @@
 pipeline{
 	agent any
+	environment{
+	 BRANCH_NAME='master'
+	}
 	tools {
 		maven 'Maven3'
 	}
