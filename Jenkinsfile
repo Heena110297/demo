@@ -1,3 +1,4 @@
+def scmVars
 pipeline{
 	agent any
 	tools {
@@ -13,13 +14,13 @@ pipeline{
 	stages {
 		stage('Checkout') {
 		  steps{
-			echo "build in ${GIT_BRANCH} branch -1"
-			checkout scm
+			scmVars = checkout scm
+                        echo scmVars.GIT_BRANCH
 		  }
 		}
 		stage('build') {
 		  steps{
-			echo "build in ${GIT_BRANCH} branch -2"
+			  echo 'build in ${scmVars.GIT_BRANCH} branch -2'
 			bat "mvn install"
 		  }
 		}
