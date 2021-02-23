@@ -14,8 +14,10 @@ pipeline{
 	stages {
 		stage('Checkout') {
 		  steps{
+			  script{
 			scmVars = checkout scm
                         echo scmVars.GIT_BRANCH
+			  }
 		  }
 		}
 		stage('build') {
