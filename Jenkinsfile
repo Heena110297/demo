@@ -22,7 +22,7 @@ pipeline{
 		}
 		stage('build') {
 		  steps{
-			  echo 'build in ${scmVars.GIT_BRANCH} branch -2'
+			  echo 'build in ${scmVars.GIT_BRANCH} branch -1'
 			bat "mvn install"
 		  }
 		}
